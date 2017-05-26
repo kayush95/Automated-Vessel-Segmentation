@@ -115,13 +115,13 @@ def unison_shuffled_copies(a, b):
 	return a[p], b[p]
 
 def load_retina():
-	bg1 = glob.glob(os.path.join("./data", F.dataset, "Adversarial_BG1", "*.png"))
-	bg2 = glob.glob(os.path.join("./data", F.dataset, "Adversarial_BG2", "*.png"))
-	bg3 = glob.glob(os.path.join("./data", F.dataset, "Adversarial_BG3", "*.png"))
+	bg1 = glob.glob(os.path.join("../../data", F.dataset, "Adversarial_BG1", "*.png"))
+	bg2 = glob.glob(os.path.join("../../data", F.dataset, "Adversarial_BG2", "*.png"))
+	bg3 = glob.glob(os.path.join("../../data", F.dataset, "Adversarial_BG3", "*.png"))
 
-	fg1 = glob.glob(os.path.join("./data", F.dataset, "Adversarial_FG1", "*.png"))
-	fg2 = glob.glob(os.path.join("./data", F.dataset, "Adversarial_FG2", "*.png"))
-	fg3 = glob.glob(os.path.join("./data", F.dataset, "Adversarial_FG3", "*.png"))
+	fg1 = glob.glob(os.path.join("../../data", F.dataset, "Adversarial_FG1", "*.png"))
+	fg2 = glob.glob(os.path.join("../../data", F.dataset, "Adversarial_FG2", "*.png"))
+	fg3 = glob.glob(os.path.join("../../data", F.dataset, "Adversarial_FG3", "*.png"))
 
 
 	bg_full = bg1 + bg2 + bg3

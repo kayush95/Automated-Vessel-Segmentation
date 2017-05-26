@@ -1,7 +1,7 @@
 from __future__ import division
 import tensorflow as tf
-from ops import *
-from utils import *
+from ops_openai import *
+from utils_openai import *
 import os
 import sys
 import numpy as np
@@ -17,9 +17,13 @@ from sklearn.metrics import precision_recall_curve
 from sklearn.metrics import jaccard_similarity_score
 
 
-test_rgb_dir = os.path.join(os.path.curdir,'data','retina','images')
-fov_dir = os.path.join(os.path.curdir,'data','retina','mask')
-gt_dir = os.path.join(os.path.curdir,'data','retina','1st_manual')
+# test_rgb_dir = os.path.join(os.path.curdir,'data','retina','images')
+# fov_dir = os.path.join(os.path.curdir,'data','retina','mask')
+# gt_dir = os.path.join(os.path.curdir,'data','retina','1st_manual')
+
+test_rgb_dir = '/home/15EC90J02/semi_GAN/data/retina/images'
+fov_dir = '/home/15EC90J02/semi_GAN/data/retina/mask'
+gt_dir = '/home/15EC90J02/semi_GAN/data/retina/1st_manual'
 
 F = tf.app.flags.FLAGS  # for flag handling
 batch_size = 64
@@ -27,9 +31,19 @@ patch_size = 32
 c_dim = 1
 output_size = patch_size
 experiment_name = 'z_inc_15K_openai'
-checkpoint_dir = '/home/15EC90J02/semi_GAN/checkpoint/retina/' + experiment_name
-save_threshold = '/home/15EC90J02/semi_GAN/checkpoint/retina/threshold/' + experiment_name
-pred_data = '/home/15EC90J02/semi_GAN/checkpoint/retina/threshold/' + experiment_name
+checkpoint_dir = '/home/15EC90J02/semi_GAN/openai/Automated-Vessel-Segmentation/checkpoint/retina/' + experiment_name
+save_threshold = '/home/15EC90J02/semi_GAN/openai/Automated-Vessel-Segmentation/checkpoint/retina/threshold/' + experiment_name
+pred_data = '/home/15EC90J02/semi_GAN/openai/Automated-Vessel-Segmentation/checkpoint/retina/threshold/' + experiment_name
+
+# if not os.path.isdir("./predictions/"+ experiment_name):
+#   os.mkdir("./predictions/"+ experiment_name)
+
+if not os.path.isdir(save_threshold):
+  os.mkdir(save_threshold)
+
+if not os.path.isdir(pred_data):
+  os.mkdir(pred_data)
+
 
 def discriminator(image, keep_prob, reuse =None):
   with tf.variable_scope('D'):
